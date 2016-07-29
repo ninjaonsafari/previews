@@ -1,0 +1,30 @@
+{
+  "name": "previews",
+  "version": "0.0.1",
+  "description": "shows design as they would look as real website",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ninjaonsafari/previews.git"
+  },
+  "keywords": [
+    "jquery",
+    "previews"
+  ],
+  "author": "ninjaonsafari",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ninjaonsafari/previews/issues"
+  },
+  "homepage": "https://github.com/ninjaonsafari/previews#readme",
+    "devDependencies": {
+    "browser-sync": "^2.13.0",
+    "del": "^2.2.1",
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.1.0",
+    "gulp-tslint": "^5.0.0",
+    "gulp-typescript": "^2.13.6",
+    "less-plugin-autoprefix": "^1.5.1",
+    "superstatic": "^4.0.3",
+    "tslint": "^3.13.0"
+  }
+}

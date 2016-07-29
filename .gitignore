@@ -1,0 +1,7 @@
+# downloaded content
+**/node_modules/
+**/typings/
+
+# generated content
+**/src/js/
+**/src/css/
