@@ -1,0 +1,25 @@
+.pagging {
+	padding-top: @paging-padding-top;
+	position: absolute;
+	top: 0px;
+	left: 50%;
+
+	li {
+		margin: @paging-item-margin;
+		height: @paging-item-size;
+		width: @paging-item-size;
+		float: left;
+		display: block;
+		background-color: @brand-secondary;
+		border: @paging-item-border-size solid @brand-primary;
+		border-radius: @paging-item-border-radius;
+		cursor: pointer;
+		position: relative;
+		right: 50%;
+
+		&:hover,
+		&.active {
+			background-color: @brand-primary;
+		}
+	}
+}

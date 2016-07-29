@@ -1,0 +1,23 @@
+button {
+	margin: @button-margin;
+	padding: 0;
+	width: @button-size;
+	height: @button-size;
+	display: block;
+	background-color: @brand-primary;
+	border-radius: @button-border-radius;
+	border: none;
+	color: @brand-secondary;
+	text-align: center;
+	line-height: @button-size;
+	cursor: pointer;
+	outline: none;
+
+	&[data-prev] {
+		float: left;
+	}
+
+	&[data-next] {
+		float: right;
+	}
+}
