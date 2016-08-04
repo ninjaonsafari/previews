@@ -1,5 +1,5 @@
 class Previews {
 	constructor() {
-		console.log("test");
-	}	
+		console.log('test');
+	}
 }

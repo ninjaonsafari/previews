@@ -9,7 +9,7 @@ var GulpConfig = (function () {
 		this.allTypeScript = this.sourceApp + '/**/*.ts';
 
 		this.lessOutputPath = this.source + '/css';
-		this.lessSourceFile = this.sourceApp + '/main.less';
+		this.lessSourceFile = this.sourceApp + '/previews.less';
 		this.allCss = [this.source + '/css/**/*.css'];
 		this.allLess = this.sourceApp + '/**/*.less';
 

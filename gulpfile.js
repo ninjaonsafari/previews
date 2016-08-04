@@ -35,20 +35,6 @@ gulp.task('compile-ts', function () {
 	return tsResult.js.pipe(gulp.dest(config.tsOutputPath));
 });
 
-/**
- * Remove all generated JavaScript files from TypeScript compilation.
- */
-gulp.task('clean-ts', function (cb) {
-	var typeScriptGenFiles = [
-		config.tsOutputPath +'/**/*.js',    // path to all JS files auto gen'd by editor
-		config.tsOutputPath +'/**/*.js.map', // path to all sourcemap files auto gen'd by editor
-		'!' + config.tsOutputPath + '/lib'
-	];
-
-  // delete the files
-  del(typeScriptGenFiles, cb);
-});
-
 gulp.task('compile-less', function () {
     var sourceLessFiles = config.lessSourceFile;
 
