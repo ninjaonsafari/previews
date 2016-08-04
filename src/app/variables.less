@@ -6,31 +6,38 @@
 @font-family-base: 'Open Sans', sans-serif;
 @font-size-base: 14px;
 
+// sizes
+@footer-height: 100px;
+
 // body
 @body-background: @brand-secondary;
 
 // circle button
-@button-size: 30px;
-@button-margin: 7px 20px 0;
+@button-size: 50px;
+@button-margin: (@footer-height - @button-size) / 2 20px 0;
 @button-border-radius: 50%;
 
 // paging
-@paging-padding-top: 18px;
+@paging-padding-top: (@footer-height - @paging-item-size) / 2;
 
 // paging-item
 @paging-item-margin: 0 2px;
-@paging-item-size: 10px;
+@paging-item-size: 30px;
 @paging-item-border-size: 1px;
 @paging-item-border-radius: 50%;
+@paging-item-color: @brand-primary;
+@paging-item-color-active: @brand-secondary;
+@paging-item-font-weight: normal;
+@paging-item-font-size: @font-size-base;
 
 // slide title
-@slide-title-line-height: 45px;
+@slide-title-line-height: @footer-height;
 @slide-title-color: @brand-primary;
-@slide-title-pos-left: 70px;
+@slide-title-pos-left: 100px;
 @slide-title-pos-top: 0;
 
 // navigation
-@navigation-height: 45px;
+@navigation-height: @footer-height;
 @navigation-background: @brand-secondary;
 @navigation-box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 @navigation-z-index: 7;

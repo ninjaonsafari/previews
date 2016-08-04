@@ -1,4 +1,4 @@
-.pagging {
+.paging {
 	padding-top: @paging-padding-top;
 	position: absolute;
 	top: 0px;
@@ -7,6 +7,7 @@
 	li {
 		margin: @paging-item-margin;
 		height: @paging-item-size;
+		line-height: @paging-item-size;
 		width: @paging-item-size;
 		float: left;
 		display: block;
@@ -16,10 +17,15 @@
 		cursor: pointer;
 		position: relative;
 		right: 50%;
+		text-align: center;
+		color: @paging-item-color;
+		font-weight: @paging-item-font-weight;
+		font-size: @paging-item-font-size;
 
 		&:hover,
 		&.active {
 			background-color: @brand-primary;
+			color: @paging-item-color-active;
 		}
 	}
 }

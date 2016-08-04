@@ -22,7 +22,7 @@ class Previews {
 		slides: 'slide',
 		buttonNext: '[data-next]',
 		buttonPrev: '[data-prev]',
-		pagging: 'footer ul.pagging li',
+		pagging: '.paging li',
 		title: '.slide-title',
 		// SETTINGS
 		isLeft: false,
