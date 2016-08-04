@@ -30,12 +30,10 @@
 		<link rel="stylesheet" href="/css/previews.css" />
 
 		<!-- scripts -->
-		<script src="/scripts/vendor/modernizr-2.6.2.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 	</head>
 	<body>
-		
-		
-		<section>
+		<section id="slides">
 			<article class="visible slide" data-title="01 Polyglott">
 				<img src="http://www.opten.ch/media/170707/01_Polyglott.jpg" alt="01 Polyglott" title="01 Polyglott" />
 			</article>
@@ -74,12 +72,12 @@
 			<button data-next><i class="fa fa-angle-right"></i></button>
 		</footer>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script src="//bowercdn.net/c/jquery-bridget-2.0.1/jquery-bridget.js"></script>
 		<script src="/js/previews.js"></script>
 		<script type="text/javascript">
 			$(function() {
-				$('#wrapper').projectPreview({
-					isLeft: false
-				});
+				$('#slides').previews();
+				//var previews = new Previews();
 			});
 		</script>
 	</body>
