@@ -4,14 +4,22 @@ button {
 	width: @button-size;
 	height: @button-size;
 	display: block;
-	background-color: @brand-primary;
+	background-color: @button-background;
 	border-radius: @button-border-radius;
 	border: none;
-	color: @brand-secondary;
+	color: @button-color;
 	text-align: center;
 	line-height: @button-size;
 	cursor: pointer;
 	outline: none;
+	border: 1px solid @button-color;
+	transition: @button-transition;
+
+	&:hover {
+		background-color: @button-background-hover;
+		color: @button-color-hover;
+		border-color: @button-color-hover;
+	}
 
 	&[data-prev] {
 		float: left;
