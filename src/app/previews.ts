@@ -7,7 +7,7 @@ interface PreviewsOptions {
 	slides?: string;
 	buttonNext?: string;
 	buttonPrev?: string;
-	pagging?: string;
+	paging?: string;
 	title?: string;
 	// SETTINGS
 	isLeft?: boolean;
@@ -19,10 +19,10 @@ interface PreviewsOptions {
 class Previews {
 	static defaultOptions: PreviewsOptions = {
 		// ELEMENTS
-		slides: 'slide',
+		slides: '.slide',
 		buttonNext: '[data-next]',
 		buttonPrev: '[data-prev]',
-		pagging: '.paging li',
+		paging: '.paging li',
 		title: '.slide-title',
 		// SETTINGS
 		isLeft: false,
@@ -33,16 +33,24 @@ class Previews {
 
 	$element: JQuery;
 	$slides: JQuery;
-	$currentSlide: JQuery;
-	$prev: JQuery;
-	$next: JQuery;
+	$paging: JQuery;
+	$buttonNext: JQuery;
+	$buttonPrev: JQuery;
+	$title: JQuery;
 	options: PreviewsOptions;
 
 	constructor(element: JQuery, options: PreviewsOptions) {
 		this.$element = $(element);
 		this.options = $.extend({}, Previews.defaultOptions, options);
-		this.$slides = this.$element.find('.' + this.options.slides);
 
+		// Elements
+		this.$slides = this.$element.find(this.options.slides);
+		this.$paging = $(this.options.paging);
+		this.$buttonNext = $(this.options.buttonNext);
+		this.$buttonPrev = $(this.options.buttonPrev);
+		this.$title = $(this.options.title);
+
+		// init
 		this.init();
 	}
 
@@ -57,28 +65,28 @@ class Previews {
 	}
 
 	next() {
-		this.$currentSlide = this.getCurrentSlide();
-		this.$next = this.getNextSlide();
-
-		this.changeSlide(this.$currentSlide, this.$next);
-		this.updatePagging();
-		this.updateTitle();
+		this.update(
+			this.getCurrentSlide(),
+			this.getNextSlide()
+		);
 	}
 
 	prev() {
-		this.$currentSlide = this.getCurrentSlide();
-		this.$prev = this.getPrevSlide();
-
-		this.changeSlide(this.$currentSlide, this.$prev);
-		this.updatePagging();
-		this.updateTitle();
+		this.update(
+			this.getCurrentSlide(),
+			this.getPrevSlide()
+		);
 	}
 
 	show(index: number) {
-		this.$currentSlide = this.getCurrentSlide();
-		this.$next = this.$slides.filter(' :eq(' + index + ')');
+		this.update(
+			this.getCurrentSlide(),
+			this.$slides.filter(' :eq(' + index + ')')
+		);
+	}
 
-		this.changeSlide(this.$currentSlide, this.$next);
+	update($currentSlide: JQuery, $next: JQuery) {
+		this.changeSlide($currentSlide, $next);
 		this.updatePagging();
 		this.updateTitle();
 	}
@@ -93,24 +101,24 @@ class Previews {
 
 	// get Next Slide
 	private getNextSlide() {
-		this.$next = this.getCurrentSlide().next();
+		var $next = this.getCurrentSlide().next();
 
-		if (this.$next.length === 0) {
-			this.$next = this.$slides.first();
+		if ($next.length === 0) {
+			$next = this.$slides.first();
 		}
 
-		return this.$next;
+		return $next;
 	};
 
 	// get Previous Slide
 	private getPrevSlide() {
-		this.$prev = this.getCurrentSlide().prev();
+		var $prev = this.getCurrentSlide().prev();
 
-		if (this.$prev.length === 0) {
-			this.$prev = this.$slides.last();
+		if ($prev.length === 0) {
+			$prev = this.$slides.last();
 		}
 
-		return this.$prev;
+		return $prev;
 	};
 
 	// Change slide
@@ -121,9 +129,9 @@ class Previews {
 
 	// Create bindings
 	private createBindings() {
-		$(this.options.buttonNext).on('click', $.proxy(this.next, this));
-		$(this.options.buttonPrev).on('click', $.proxy(this.prev, this));
-		$(this.options.pagging).on('click', $.proxy(this.showSlideByClickingPaging, this));
+		this.$buttonNext.on('click', $.proxy(this.next, this));
+		this.$buttonPrev.on('click', $.proxy(this.prev, this));
+		this.$paging.on('click', $.proxy(this.showSlideByClickingPaging, this));
 		$(document).on('keyup', $.proxy(this.showSlideByHittingKeyboard, this));
 	};
 
@@ -141,16 +149,19 @@ class Previews {
 
 	// Update Pagging
 	private updatePagging() {
-		var index = this.getCurrentSlide().index();
-
-		$(this.options.pagging).filter('.' + this.options.visibleClassPagging).removeClass(this.options.visibleClassPagging);
-		$(this.options.pagging).filter(' :eq(' + index + ')').addClass(this.options.visibleClassPagging);
+		// remove from active
+		this.$paging
+			.filter('.' + this.options.visibleClassPagging)
+			.removeClass(this.options.visibleClassPagging);
+		// add to current
+		this.$paging
+			.filter(' :eq(' + this.getCurrentSlide().index() + ')')
+			.addClass(this.options.visibleClassPagging);
 	};
 
 	// Update Title
 	private updateTitle() {
-		this.$currentSlide = this.getCurrentSlide();
-		$(this.options.title).text(this.$currentSlide.data('title'));
+		this.$title.text(this.getCurrentSlide().data('title'));
 	};
 }
 
